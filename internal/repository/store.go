@@ -163,10 +163,3 @@ type IdempotencyRecord struct {
 	ExpiresAt    time.Time
 	CreatedAt    time.Time
 }
-
-func (r IdempotencyRecord) ReplayBody() []byte {
-	if r.ResponseCode < 200 || r.ResponseCode >= 300 {
-		return append([]byte(nil), r.ResponseBody...)
-	}
-	return []byte{}
-}
